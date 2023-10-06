@@ -1,0 +1,57 @@
+#include <iostream>
+using namespace std;
+
+
+
+int *duplicateArray(const int*, int);
+void displayArray (const int[], int);
+
+//int main starts here 
+int main() {
+
+const int SIZE1 = 5 ; 
+int array1[SIZE1] = {100, 200, 300, 400, 500}; //Define the array
+int *dup1 = nullptr ; //definw the pointer
+
+//duplicate the array
+dup1 = duplicateArray(array1, SIZE1);
+
+//display original array
+cout << "\nThe original arrays are:" << endl;
+displayArray(array1, SIZE1);
+
+
+//display new array
+cout << "\nHere is the reversed arrays:" << endl;
+displayArray(dup1, SIZE1);
+
+//delete the memory
+delete[] dup1;
+//points to no mem
+dup1 = nullptr;
+
+  return 0;
+}
+
+
+int* duplicateArray(const int *arr, int size) {
+int *newArray = nullptr;
+
+if (size <= 0)
+    return nullptr;
+
+//allocate array
+newArray = new int[size];
+
+//copy array content to new array
+for (int index = 0; index < size; index++)
+newArray[index] = arr[size-index-1];
+
+  return newArray;
+}
+
+void displayArray(const int arr[], int size) {
+for (int index = 0; index < size; index++)
+cout << arr[index] << " ";
+cout << endl;
+}
